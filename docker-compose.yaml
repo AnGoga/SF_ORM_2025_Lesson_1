@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    environment:
+      MARIADB_DATABASE: userdb
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_USER: root
+      MARIADB_PASSWORD: root
+    networks:
+      - common-network
+    ports:
+      - "3306:3306"
+    volumes:
+      - ../data/mysql:/var/lib/mysql
+    restart: always
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "127.0.0.1", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    logging:
+      options:
+        max-size: "10m"
+
+networks:
+  common-network:
+    driver: bridge
