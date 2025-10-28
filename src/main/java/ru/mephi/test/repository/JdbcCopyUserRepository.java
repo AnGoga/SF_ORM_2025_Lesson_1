@@ -1,10 +1,8 @@
 package ru.mephi.test.repository;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import ru.mephi.test.exceptions.AppException;
 import ru.mephi.test.model.User;
 
@@ -17,7 +15,7 @@ import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
-public class JdbcUserRepository implements UserRepository {
+public class JdbcCopyUserRepository implements UserRepository {
     private final DataSource dataSource;
 
 
